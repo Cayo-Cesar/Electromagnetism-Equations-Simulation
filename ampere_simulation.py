@@ -19,28 +19,28 @@ def plot_grafico(corrente, distancia_inicial, distancia_final):
     plt.show()
 
 def criar_interface():
-    root = Tk()
-    root.title("Simulação da Lei de Ampère")
+    root1 = Tk()
+    root1.title("Simulação da Lei de Ampère")
 
-    label_corrente = Label(root, text="Corrente:")
+    label_corrente = Label(root1, text="Corrente:")
     label_corrente.grid(row=0, column=0)
-    entry_corrente = Entry(root)
+    entry_corrente = Entry(root1)
     entry_corrente.grid(row=0, column=1)
 
-    label_distancia_inicial = Label(root, text="Distância Inicial:")
+    label_distancia_inicial = Label(root1, text="Distância Inicial:")
     label_distancia_inicial.grid(row=1, column=0)
-    entry_distancia_inicial = Entry(root)
+    entry_distancia_inicial = Entry(root1)
     entry_distancia_inicial.grid(row=1, column=1)
 
-    label_distancia_final = Label(root, text="Distância Final:")
+    label_distancia_final = Label(root1, text="Distância Final:")
     label_distancia_final.grid(row=2, column=0)
-    entry_distancia_final = Entry(root)
+    entry_distancia_final = Entry(root1)
     entry_distancia_final.grid(row=2, column=1)
 
-    btn_plotar = Button(root, text="Iniciar Simulação", command=lambda: plot_grafico(entry_corrente.get(), entry_distancia_inicial.get(), entry_distancia_final.get()))
+    btn_plotar = Button(root1, text="Iniciar Simulação", command=lambda: plot_grafico(entry_corrente.get(), entry_distancia_inicial.get(), entry_distancia_final.get()))
     btn_plotar.grid(row=3, column=0, columnspan=2)
 
-    root.mainloop()
+    root1.mainloop()
 
 # Chamando a função para criar a interface
 criar_interface()
