@@ -85,3 +85,5 @@ def plot_lorentz_simulation(posicoes, intensidade_campo):
     plt.show()
 
 obter_parametros()
+
+oi
