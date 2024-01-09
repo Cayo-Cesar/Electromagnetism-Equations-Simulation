@@ -21,5 +21,6 @@ plt.ylabel('Intensidade do Campo Magnético (T)')
 plt.title('Simulação da Lei de Ampère para um Fio Retilíneo')
 plt.grid(True)
 plt.show()
+# COMMIT
 
 
