@@ -1,26 +1,46 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from tkinter import Tk, Label, Entry, Button, StringVar
 
 def ampere_law(I, r):
     mu_0 = 4 * np.pi * 1e-7  # Permeabilidade do vácuo
     return (mu_0 * I) / (2 * np.pi * r)
 
-# Parâmetros da simulação
-I = 1.0  # Corrente elétrica no fio
+def plot_grafico(corrente, distancia_inicial, distancia_final):
+    I = float(corrente)
+    distancias = np.arange(float(distancia_inicial), float(distancia_final) + 0.1, 0.1)
+    campo_magnetico = [ampere_law(I, r) for r in distancias]
 
-# Distâncias de 0.1 a 5.0 em passos de 0.1
-distancias = np.arange(0.1, 5.1, 0.1)
+    plt.plot(distancias, campo_magnetico, marker='o')
+    plt.xlabel('Distância do Fio (m)')
+    plt.ylabel('Intensidade do Campo Magnético (T)')
+    plt.title('Simulação da Lei de Ampère para um Fio Retilíneo')
+    plt.grid(True)
+    plt.show()
 
-# Calcular a intensidade do campo magnético para cada distância
-campo_magnetico = [ampere_law(I, r) for r in distancias]
+def criar_interface():
+    root = Tk()
+    root.title("Simulação da Lei de Ampère")
 
-# Plotar o gráfico
-plt.plot(distancias, campo_magnetico, marker='o')
-plt.xlabel('Distância do Fio (m)')
-plt.ylabel('Intensidade do Campo Magnético (T)')
-plt.title('Simulação da Lei de Ampère para um Fio Retilíneo')
-plt.grid(True)
-plt.show()
-# COMMIT
+    label_corrente = Label(root, text="Corrente:")
+    label_corrente.grid(row=0, column=0)
+    entry_corrente = Entry(root)
+    entry_corrente.grid(row=0, column=1)
 
+    label_distancia_inicial = Label(root, text="Distância Inicial:")
+    label_distancia_inicial.grid(row=1, column=0)
+    entry_distancia_inicial = Entry(root)
+    entry_distancia_inicial.grid(row=1, column=1)
 
+    label_distancia_final = Label(root, text="Distância Final:")
+    label_distancia_final.grid(row=2, column=0)
+    entry_distancia_final = Entry(root)
+    entry_distancia_final.grid(row=2, column=1)
+
+    btn_plotar = Button(root, text="Iniciar Simulação", command=lambda: plot_grafico(entry_corrente.get(), entry_distancia_inicial.get(), entry_distancia_final.get()))
+    btn_plotar.grid(row=3, column=0, columnspan=2)
+
+    root.mainloop()
+
+# Chamando a função para criar a interface
+criar_interface()
