@@ -8,8 +8,8 @@ from tkinter import ttk
 #Definições da Interface Gráfica
 
 def executar_simulacao(q, m, B, v0, r0):
-    posicoes = lorentz_simulation(q, m, B, v0, r0)
-    plot_lorentz_simulation(posicoes)
+    posicoes, intensidade_campo = lorentz_simulation(q, m, B, v0, r0)
+    plot_lorentz_simulation(posicoes, intensidade_campo)
 
 def obter_parametros():
    
@@ -67,8 +67,7 @@ def lorentz_simulation(q, m, B, v0, r0, dt=0.01, num_steps=1000):
         posicoes.append(r.copy())
 
     intensidade_campo = np.linalg.norm(B)
-    
-    return np.array(posicoes)
+    return np.array(posicoes), intensidade_campo
 
 def plot_lorentz_simulation(posicoes, intensidade_campo):
     fig = plt.figure()
@@ -85,5 +84,3 @@ def plot_lorentz_simulation(posicoes, intensidade_campo):
     plt.show()
 
 obter_parametros()
-
-oi
