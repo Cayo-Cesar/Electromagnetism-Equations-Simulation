@@ -52,13 +52,10 @@ class SimulationChooser(QWidget):
 
     def run_simulation(self, simulation_module):
         try:
-            # Cria uma nova instância do QApplication
             app_simulation = QApplication([])
 
-            # Importa e executa o módulo da simulação
             importlib.import_module(simulation_module).run_simulation()
 
-            # Executa o loop de eventos da nova aplicação
             app_simulation.exec_()
 
         except ImportError:

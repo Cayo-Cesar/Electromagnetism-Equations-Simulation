@@ -5,9 +5,6 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import Tk, Label, Entry, Button, StringVar
 
-
-# Definitions for the GUI
-
 def execute_simulation(q, m, B, v0, r0):
     positions, forces = lorentz_simulation(q, m, B, v0, r0)  
     force_magnitude = np.linalg.norm(forces, axis=1)  
@@ -51,7 +48,6 @@ def run_simulation():
 
     window.mainloop()
 
-# Function for Lorentz simulation
 def lorentz_simulation(q, m, B, v0, r0, dt=0.01, num_steps=1000):
     positions = []
     forces = []  
@@ -69,7 +65,6 @@ def lorentz_simulation(q, m, B, v0, r0, dt=0.01, num_steps=1000):
 
     return np.array(positions), np.array(forces)
 
-# Function to plot Lorentz simulation results
 def plot_lorentz_simulation(positions, force_magnitude):
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')

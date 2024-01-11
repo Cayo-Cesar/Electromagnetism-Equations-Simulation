@@ -2,7 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from tkinter import Tk, ttk, Label, Entry, Button, StringVar
 
-
 def biot_savart(I, r, dl):
     mu_0 = 4 * np.pi * 1e-7
     r_norm = np.linalg.norm(r)
@@ -26,7 +25,6 @@ def plotar_grafico_biot_savart(distancias, campos):
     plt.title('Simulação da Lei de Biot-Savart para um Fio Retilíneo')
     plt.grid(True)
 
-    # Adicionando texto com o valor do campo magnético abaixo do gráfico
     plt.text(0.5, -0.15, f'Intensidade do Campo: {campos[-1]:.4e} T', transform=plt.gca().transAxes, ha='center', va='center', bbox=dict(facecolor='white', alpha=0.5))
     
     plt.show()
@@ -47,7 +45,6 @@ def calcular_e_plotar_biot_savart():
 
     plotar_grafico_biot_savart(distancias, campos)
 
-# Tkinter GUI
 root = Tk()
 root.title("Lei de Biot-Savart - Simulação")
 
