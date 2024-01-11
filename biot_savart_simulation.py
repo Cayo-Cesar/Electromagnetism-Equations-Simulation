@@ -1,5 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from tkinter import Tk, ttk, Label, Entry, Button, StringVar
+
 
 def biot_savart(I, r, dl):
     mu_0 = 4 * np.pi * 1e-7
@@ -29,26 +31,43 @@ def plotar_grafico_biot_savart(distancias, campos):
     
     plt.show()
 
-def main():
-    # Solicita entrada do usuário
-    corrente = input("Digite a corrente (em Amperes): ")
-    dl_z = input("Digite o comprimento do segmento de corrente ao longo do eixo z (em metros): ")
-    distancia_inicial = input("Digite a distância inicial do ponto de observação ao longo do eixo x (em metros): ")
-    distancia_final = input("Digite a distância final do ponto de observação ao longo do eixo x (em metros): ")
+def calcular_e_plotar_biot_savart():
+    corrente = corrente_var.get()
+    dl_z = dl_z_var.get()
+    distancia_inicial = distancia_inicial_var.get()
+    distancia_final = distancia_final_var.get()
     passo = 0.1
 
-    # Cria um array de distâncias usando np.arange
     distancias = np.arange(float(distancia_inicial), float(distancia_final) + passo, passo)
 
-    # Calcula os campos magnéticos usando a Lei de Biot-Savart
     campos = calcular_campos_biot_savart(corrente, dl_z, distancias)
 
-    # Exibe o resultado
     for r, b in zip(distancias, campos):
         print(f"Distância do Fio: {r:.2f} m, Campo Magnético: {b:.6e} T")
 
-    # Plota o gráfico
     plotar_grafico_biot_savart(distancias, campos)
 
-if __name__ == "__main__":
-    main()
+# Tkinter GUI
+root = Tk()
+root.title("Lei de Biot-Savart - Simulação")
+
+Label(root, text="Corrente (A):").grid(row=0, column=0)
+Label(root, text="Comprimento do segmento de corrente ao longo do eixo z (m):").grid(row=1, column=0)
+Label(root, text="Distância Inicial (m):").grid(row=2, column=0)
+Label(root, text="Distância Final (m):").grid(row=3, column=0)
+
+corrente_var = StringVar()
+dl_z_var = StringVar()
+distancia_inicial_var = StringVar()
+distancia_final_var = StringVar()
+
+Entry(root, textvariable=corrente_var).grid(row=0, column=1)
+Entry(root, textvariable=dl_z_var).grid(row=1, column=1)
+Entry(root, textvariable=distancia_inicial_var).grid(row=2, column=1)
+Entry(root, textvariable=distancia_final_var).grid(row=3, column=1)
+
+Button(root, text="Calcular e Plotar", command=calcular_e_plotar_biot_savart).grid(row=4, column=0, columnspan=2)
+
+root.mainloop()
+
+
